@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SimulationSceneScript : MonoBehaviour
 {
     private SimulationData simulationData;
     public GameObject plaque;
     public GameObject efield;
+    public Image playpause;
+    public Sprite playSprite;
+    public Sprite pauseSprite;
+    public bool isPlay = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,5 +24,18 @@ public class SimulationSceneScript : MonoBehaviour
     public void back()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    public void changePlayPause()
+    {
+        if (isPlay)
+        {
+            playpause.sprite = playSprite;
+            isPlay = false;
+        } else
+        {
+            playpause.sprite = pauseSprite;
+            isPlay = true;
+        }
     }
 }

@@ -13,11 +13,13 @@ public class Particle
     public float charge;
     public float mass;
     public float vi;
-    public float vx;
+    public float vix;
+    public float viy;
     public float vy;
     public float angle;
     public float x;
     public float y;
     public float xmax;
     public float ymax;
+    public float acceleration;
 }

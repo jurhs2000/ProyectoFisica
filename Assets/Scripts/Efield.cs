@@ -5,6 +5,5 @@ using UnityEngine;
 public class Efield
 {
     public float intensity;
-    public bool direction;
     public float large;
 }
