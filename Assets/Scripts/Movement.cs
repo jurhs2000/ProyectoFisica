@@ -31,6 +31,7 @@ public class Movement : MonoBehaviour
     Vector2 lastWall;
     Collider2D nextWall;
     public Toggle toggle;
+    private float yStop;
 
     // Start is called before the first frame update
     void Start()
@@ -65,14 +66,27 @@ public class Movement : MonoBehaviour
             // Otros parametros de la particula
             if (particle.y < 0)
             {
+                // Cuando la partícula sale por debajo de la placa
                 accMultiplier = 0;
                 particle.viy = particle.vy;
                 particle.y = particle.y - (particle.viy * timeStop); // Al nuevo movimiento se le resta Y inicial
             }
             else
             {
-                particle.vy = particle.viy + (particle.acceleration * timer.t);
-                timeStop = timer.t;
+                if (particle.x > simulationData.efield.large)
+                {
+                    // Cuando la partícula supera el largo de la placa y Y > 0
+                    accMultiplier = 0;
+                    particle.viy = particle.vy;
+                    particle.y = yStop + (particle.viy * (timer.t - timeStop));
+                } else
+                {
+                    // Mientras este en el campo electrico calcula la velocidad en y normal
+                    particle.vy = particle.viy + (particle.acceleration * timer.t);
+                    timeStop = timer.t;
+                    yStop = particle.y;
+                    // Cuando salga dejara de calcularla y quedará con aceleración 0
+                }
             }
             angletxt.text = "Angle: " + (Math.Atan((particle.vy/particle.vix)) * (180 / Math.PI)).ToString("f2") + "º";
             // Estableciendo posicion del objeto en Unity

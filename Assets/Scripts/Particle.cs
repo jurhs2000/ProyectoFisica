@@ -19,7 +19,7 @@ public class Particle
     public float angle;
     public float x;
     public float y;
-    public float xmax;
-    public float ymax;
+    public float xmax = 0;
+    public float ymax = 0;
     public float acceleration;
 }
