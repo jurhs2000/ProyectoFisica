@@ -21,8 +21,6 @@ public class Movement : MonoBehaviour
     public Text chargetxt;
     public Text masstxt;
     public Text efieldtxt;
-    public Text xmaxtxt;
-    public Text ymaxtxt;
     public Text largePlaquetxt;
     public Particle particle;
     private int accMultiplier = 1;

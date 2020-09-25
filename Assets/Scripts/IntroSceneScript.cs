@@ -9,4 +9,9 @@ public class IntroSceneScript : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public void exit()
+    {
+        Application.Quit();
+    }
 }
