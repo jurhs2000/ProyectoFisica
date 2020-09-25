@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
             particle.y = (float)((particle.viy * timer.t) + ((particle.acceleration * Math.Pow(timer.t, 2)) / 2));
             particle.x = particle.vix * timer.t;
             // Otros parametros de la particula
-            if (particle.y < 0)
+            if (particle.y < 0 && particle.x < simulationData.efield.large)
             {
                 // Cuando la partícula sale por debajo de la placa
                 accMultiplier = 0;
@@ -76,7 +76,7 @@ public class Movement : MonoBehaviour
                     // Cuando la partícula supera el largo de la placa y Y > 0
                     accMultiplier = 0;
                     particle.viy = particle.vy;
-                    particle.y = yStop + (particle.viy * (timer.t - timeStop));
+                    particle.y = yStop + (particle.y - (particle.viy * timeStop));
                 } else
                 {
                     // Mientras este en el campo electrico calcula la velocidad en y normal
@@ -90,7 +90,7 @@ public class Movement : MonoBehaviour
             // Estableciendo posicion del objeto en Unity
             gameObject.transform.position = new Vector3(particle.x, particle.y, 0);
             posXtxt.text = "Pos X: " + particle.x.ToString() + " m";
-            posYtxt.text = "Pos Y: " + particle.y.ToString() + " m";
+            posYtxt.text = "Pos Y: " + yStop.ToString() + " m";
             vytxt.text = "Vel Y: " + particle.vy + " m/s";
             acceltxt.text = "Accel: " + particle.acceleration + " m/(s^2)";
 
