@@ -26,6 +26,11 @@ public class SimulationSceneScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
+    public void resetlvl()
+    {
+        SceneManager.LoadScene("Simulation");
+    }
+
     public void changePlayPause()
     {
         if (isPlay)

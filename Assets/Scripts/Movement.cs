@@ -27,6 +27,11 @@ public class Movement : MonoBehaviour
     public Particle particle;
     private int accMultiplier = 1;
     private float timeStop;
+    public GameObject wall;
+    Vector2 lastWall;
+    Collider2D nextWall;
+    public Toggle toggle;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -76,6 +81,19 @@ public class Movement : MonoBehaviour
             posYtxt.text = "Pos Y: " + particle.y.ToString() + " m";
             vytxt.text = "Vel Y: " + particle.vy + " m/s";
             acceltxt.text = "Accel: " + particle.acceleration + " m/(s^2)";
+
+            if (toggle.isOn) //deja rastro la particula
+            {
+                spawnWall();
+            }
+            
         }
+    }
+
+    void spawnWall()
+    {
+        lastWall = transform.position;
+        GameObject l = (GameObject)Instantiate(wall, transform.position, Quaternion.identity);
+        nextWall = l.GetComponent<Collider2D>();
     }
 }
